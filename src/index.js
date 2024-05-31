@@ -25,7 +25,9 @@ const colorNames = [
   "white",
   "black-2",
   "white-2",
-]; // Function to create a single Pokemon card
+];
+
+// Function to create a single Pokemon card
 function createCard(pokemon) {
   const card = document.createElement("li");
   card.className = "card";
@@ -56,22 +58,14 @@ function createCard(pokemon) {
   // Card Stats
   const stats = document.createElement("ul");
   stats.className = "card--text";
-  const statsArray = [
-    `HP: ${pokemon.stats[0].base_stat}`,
-    `ATTACK: ${pokemon.stats[1].base_stat}`,
-    `DEFENSE: ${pokemon.stats[2].base_stat}`,
-    `SPECIAL-ATTACK: ${pokemon.stats[3].base_stat}`,
-    `SPECIAL-DEFENSE: ${pokemon.stats[4].base_stat}`,
-    `SPEED: ${pokemon.stats[5].base_stat}`,
-  ];
-  statsArray.forEach((stat) => {
+  pokemon.stats.forEach((stat) => {
     const statItem = document.createElement("li");
-    statItem.textContent = stat;
+    statItem.textContent = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
     stats.appendChild(statItem);
   });
   card.appendChild(stats);
 
-  // Games Appeared In (Extended Requirement)
+  // Games Appeared In (Extended)
   const games = document.createElement("ul");
   games.className = "card--games";
   pokemon.game_indices
